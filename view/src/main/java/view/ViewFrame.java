@@ -1,4 +1,4 @@
-package view.src.main.java.view;
+package view;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
@@ -8,23 +8,21 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
-import controller.Controller;
+import contract.IController;
 import contract.IModel;
-import view.ViewPanel;
 
 /**
  * The Class ViewFrame.
  *
- * @author Alexis
+ * @author Jean-Aymeric Diet
  */
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
-	private IModel	model;
+	private IModel						model;
 
 	/** The controller. */
-	private Controller	controller;
+	private IController				controller;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
@@ -88,7 +86,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *
 	 * @return the controller
 	 */
-	public Controller getController() {
+	private IController getController() {
 		return this.controller;
 	}
 
@@ -98,7 +96,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param controller
 	 *          the new controller
 	 */
-	protected void setController(final Controller controller) {
+	protected void setController(final IController controller) {
 		this.controller = controller;
 	}
 
@@ -133,38 +131,18 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setTitle("Boulderdash");
-		this.setSize(1750+ this.getInsets().left + this.getInsets().right, 950 + this.getInsets().top + this.getInsets().bottom);
+		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
 	}
 
 	/**
 	 * Prints the message.
 	 *
-	 * @param messageLevel
-	 * 			the message level
-	 * @param messageMap
-	 *          the message map
+	 * @param message
+	 *          the message
 	 */
-	public void printMessage(final String messageLevel,final String messageMap) {
-		int map = 42;
-		while(map < 0 || map > 5)
-			try {
-				map = Integer.parseInt(JOptionPane.showInputDialog(messageMap));
-			}catch (Exception e){
-				e.printStackTrace();
-			}
-
-
-		int level = 42;
-		while(level < 0 || level > 7)
-			try {
-				level = Integer.parseInt(JOptionPane.showInputDialog(messageLevel));
-			}catch (Exception e){
-				e.printStackTrace();
-			}
-
-		this.getController().buildPlateau( map, level);
+	public void printMessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 	/*

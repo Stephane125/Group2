@@ -1,20 +1,18 @@
-package view.src.main.java.view;
+package view;
 
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
-import controller.Controller;
+import contract.IController;
 import contract.IModel;
 import contract.IView;
-import view.ViewFrame;
-
 
 /**
  * The Class View.
  *
- * @author Alexis
+ * @author Jean-Aymeric Diet
  */
 public final class View implements IView, Runnable {
 
@@ -41,17 +39,17 @@ public final class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_UP:
-				return ControllerOrder.UP;
-			case KeyEvent.VK_DOWN:
-				return ControllerOrder.DOWN;
-			case KeyEvent.VK_LEFT:
-				return ControllerOrder.LEFT;
-			case KeyEvent.VK_RIGHT:
-				return ControllerOrder.RIGHT;
-
+			case KeyEvent.VK_G:
+				return ControllerOrder.English;
+			case KeyEvent.VK_F:
+				return ControllerOrder.Francais;
+			case KeyEvent.VK_D:
+				return ControllerOrder.Deutsch;
+			case KeyEvent.VK_I:
+				return ControllerOrder.Indonesia;
+			default:
+				return ControllerOrder.English;
 		}
-		return null;
 	}
 
 	/*
@@ -59,8 +57,8 @@ public final class View implements IView, Runnable {
 	 *
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
-	public void printMessage(final String messagelevel,final String messagemap) {
-		this.viewFrame.printMessage(messagelevel,messagemap);
+	public void printMessage(final String message) {
+		this.viewFrame.printMessage(message);
 	}
 
 	/*
@@ -78,13 +76,7 @@ public final class View implements IView, Runnable {
 	 * @param controller
 	 *          the new controller
 	 */
-	public void setController(final Controller controller) {
+	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
-	}
-
-
-	@Override
-	public void printMessage(String message) {
-
 	}
 }

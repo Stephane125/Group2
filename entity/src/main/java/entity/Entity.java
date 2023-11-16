@@ -3,7 +3,7 @@ package entity;
 /**
  * The Class Entity.
  *
- * @author Group 2
+ * @author Jean-Aymeric Diet
  */
 public abstract class Entity {
 
