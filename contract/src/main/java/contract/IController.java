@@ -13,5 +13,5 @@ public interface IController {
 	 * @param controllerOrder
 	 *          the controller order
 	 */
-	public void orderPerform(ControllerOrder controllerOrder);
+	public void orderPerform(contract.ControllerOrder controllerOrder);
 }
